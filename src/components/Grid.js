@@ -3,6 +3,8 @@ import Box from "./Box";
 
 import styled from "styled-components";
 
+import "../index.css";
+
 const Container = styled.div`
   width: 150px;
   line-height: 0;
