@@ -15,26 +15,30 @@ const Container = styled.div`
 const Grid = ({ cols, rows, gridFull, selectBox }) => {
   const width = cols * 14;
 
-  const rowsArr = [];
+  const fillArray = () => {
+    const rowsArr = [];
 
-  for (let i = 0; i < rows; i += 1) {
-    for (let y = 0; y < cols; y += 1) {
-      const boxId = `${i}_${y}`;
+    for (let i = 0; i < rows; i += 1) {
+      for (let y = 0; y < cols; y += 1) {
+        const boxId = `${i}_${y}`;
 
-      rowsArr.push(
-        <Box
-          boxClass={gridFull[i][y] ? "on" : "off"}
-          key={boxId}
-          boxId={boxId}
-          row={i}
-          col={y}
-          selectBox={selectBox}
-        />
-      );
+        rowsArr.push(
+          <Box
+            boxClass={gridFull[i][y] ? "on" : "off"}
+            key={boxId}
+            boxId={boxId}
+            row={i}
+            col={y}
+            selectBox={selectBox}
+          />
+        );
+      }
     }
-  }
 
-  return <Container style={{ width: width }}>{rowsArr}</Container>;
+    return rowsArr;
+  };
+
+  return <Container style={{ width: width }}>{fillArray()}</Container>;
 };
 
 export default Grid;

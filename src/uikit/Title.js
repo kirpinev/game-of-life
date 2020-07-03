@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Title = styled.h1`
-  color: white;
+  color: ${(props) => props.textColor};
   margin: auto;
   text-align: center;
   width: 50%;

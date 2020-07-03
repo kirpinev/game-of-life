@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   selectBox = (row, col) => {
-    let gridCopy = arrayClone(this.state.gridFull);
+    const gridCopy = arrayClone(this.state.gridFull);
 
     gridCopy[row][col] = !gridCopy[row][col];
     this.setState({
@@ -111,9 +111,9 @@ class App extends Component {
   };
 
   play = () => {
-    let g = this.state.gridFull;
+    const g = this.state.gridFull;
 
-    let g2 = arrayClone(this.state.gridFull);
+    const g2 = arrayClone(this.state.gridFull);
 
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
@@ -141,7 +141,9 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Title as="h1">The Game of Life</Title>
+        <Title as="h1" textColor="white">
+          The Game of Life
+        </Title>
         <Buttons
           playButton={this.playButton}
           pauseButton={this.pauseButton}
@@ -157,7 +159,9 @@ class App extends Component {
           cols={this.cols}
           selectBox={this.selectBox}
         />
-        <Title as="h2">Generations: {this.props.generation}</Title>
+        <Title as="h2" textColor="white">
+          Generations: {this.props.generation}
+        </Title>
       </Container>
     );
   }
