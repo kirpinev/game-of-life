@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import { updateSpeed, updateGeneration } from "../actions";
 
 import Buttons from "./Buttons";
 import Grid from "./Grid";
@@ -16,12 +19,10 @@ const Container = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.speed = 100;
     this.cols = 50;
     this.rows = 30;
 
     this.state = {
-      generation: 0,
       gridFull: Array(this.rows)
         .fill()
         .map(() => Array(this.cols).fill(false)),
@@ -61,7 +62,7 @@ class App extends Component {
   playButton = () => {
     clearInterval(this.intervalId);
 
-    this.intervalId = setInterval(this.play, this.speed);
+    this.intervalId = setInterval(this.play, this.props.speed);
   };
 
   pauseButton = () => {
@@ -69,12 +70,14 @@ class App extends Component {
   };
 
   slow = () => {
-    this.speed = 1000;
+    this.props.updateSpeed(1000);
+
     this.playButton();
   };
 
   fast = () => {
-    this.speed = 100;
+    this.props.updateSpeed(100);
+
     this.playButton();
   };
 
@@ -83,7 +86,9 @@ class App extends Component {
       .fill()
       .map(() => Array(this.cols).fill(false));
 
-    this.setState({ gridFull: grid, generation: 0 });
+    this.props.updateGeneration(0);
+
+    this.setState({ gridFull: grid });
   };
 
   gridSize = (size) => {
@@ -125,9 +130,10 @@ class App extends Component {
         if (!g[i][j] && count === 3) g2[i][j] = true;
       }
     }
+    this.props.updateGeneration(this.props.generation + 1);
+
     this.setState({
       gridFull: g2,
-      generation: this.state.generation + 1,
     });
   };
 
@@ -150,10 +156,15 @@ class App extends Component {
           cols={this.cols}
           selectBox={this.selectBox}
         />
-        <Title as="h2">Generations: {this.state.generation}</Title>
+        <Title as="h2">Generations: {this.props.generation}</Title>
       </Container>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  speed: state.speed,
+  generation: state.generation,
+});
+
+export default connect(mapStateToProps, { updateSpeed, updateGeneration })(App);
