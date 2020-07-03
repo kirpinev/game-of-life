@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACE,wBACF,CAEA,IACE,sBACF","file":"main.f5d6edae.chunk.css","sourcesContent":[".off {\n  background-color: lightgray;\n}\n\n.on {\n  background-color: green;\n}\n"]}
