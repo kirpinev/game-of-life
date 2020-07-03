@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import Buttons from "./Buttons";
 import Grid from "./Grid";
+import Title from "../uikit/Title";
 
-import "../index.css";
+import arrayClone from "../utils/array-clone";
+
+const Container = styled.div`
+  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/squares.png);
+  height: 100vh;
+  padding-top: 1px;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -125,8 +133,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>The Game of Life</h1>
+      <Container>
+        <Title as="h1">The Game of Life</Title>
         <Buttons
           playButton={this.playButton}
           pauseButton={this.pauseButton}
@@ -142,12 +150,10 @@ class App extends Component {
           cols={this.cols}
           selectBox={this.selectBox}
         />
-        <h2>Generations: {this.state.generation}</h2>
-      </div>
+        <Title as="h2">Generations: {this.state.generation}</Title>
+      </Container>
     );
   }
 }
-
-const arrayClone = (arr) => JSON.parse(JSON.stringify(arr));
 
 export default App;
