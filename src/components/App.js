@@ -12,7 +12,8 @@ import arrayClone from "../utils/array-clone";
 
 const Container = styled.div`
   background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/squares.png);
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100%;
   padding-top: 1px;
 `;
 
